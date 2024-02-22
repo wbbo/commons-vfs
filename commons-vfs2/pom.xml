@@ -35,6 +35,16 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.codelibs</groupId>
+      <artifactId>jcifs</artifactId>
+      <version>2.1.32</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>jakarta.mail</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
       <groupId>commons-logging</groupId>
       <artifactId>commons-logging</artifactId>
     </dependency>
