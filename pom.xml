@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-parent</artifactId>
-    <version>75</version>
+    <version>78</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -97,16 +97,15 @@
     </commons.osgi.import>
     <!-- Avoid warnings about being unable to find jars during site building -->
     <dependency.locations.enabled>false</dependency.locations.enabled>
-    <hadoop.version>3.4.0</hadoop.version>
-    <httpcore5.version>5.3</httpcore5.version>
-    <httpclient5.version>5.4</httpclient5.version>
+    <hadoop.version>3.4.1</hadoop.version>
+    <httpcore5.version>5.3.1</httpcore5.version>
+    <httpclient5.version>5.4.1</httpclient5.version>
     <jackrabbit1.version>1.6.5</jackrabbit1.version>
     <!-- Don't use jackrabbit2 2.21.x, it's labeled "unstable". -->
     <!-- 2.22.0 requires Java 11. -->
     <jackrabbit2.version>2.20.16</jackrabbit2.version>
-    <commons.asm.version>9.4</commons.asm.version>
     <slf4j.version>2.0.16</slf4j.version>
-    <log4j2.version>2.24.0</log4j2.version>
+    <log4j2.version>2.24.2</log4j2.version>
     <collections4.version>4.5.0-M2</collections4.version>
     <jsch.version>0.1.55</jsch.version>
     <httpclient3.version>3.1</httpclient3.version>
@@ -339,14 +338,6 @@
         <groupId>com.github.siom79.japicmp</groupId>
         <artifactId>japicmp-maven-plugin</artifactId>
       </plugin>
-      <!-- cobertura breaks because it cannot parse annotations in methods. -->
-      <!--
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>${commons.cobertura.version}</version>
-      </plugin>
-      -->
       <!-- javancss breaks because it cannot parse annotations in methods. -->
       <!--
       <plugin>
@@ -536,7 +527,7 @@
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
-        <version>2.17.0</version>
+        <version>2.18.0</version>
       </dependency>
       <!-- Test HTTP with Apache HttpComponent Core -->
       <dependency>

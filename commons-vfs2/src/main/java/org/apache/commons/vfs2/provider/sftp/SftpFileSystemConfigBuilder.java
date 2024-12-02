@@ -94,7 +94,7 @@ public final class SftpFileSystemConfigBuilder extends FileSystemConfigBuilder {
      * the VFS host.
      * </p>
      * <p>
-     * When used, the proxy username ({@linkplain #setProxyUser}) and hostname ({@linkplain #setProxyHost}) <b>must</b>
+     * When used, the proxy username ({@linkplain #setProxyUser}) and hostname ({@linkplain #setProxyHost}) <strong>must</strong>
      * be set. Optionally, the command ({@linkplain #setProxyCommand}), password ({@linkplain #setProxyPassword}) and
      * connection options ({@linkplain #setProxyOptions}) can be set.
      * </p>
@@ -450,7 +450,6 @@ public final class SftpFileSystemConfigBuilder extends FileSystemConfigBuilder {
      *
      * @param options The FileSystemOptions.
      * @return {@code true} if detection of exec channel should be disabled.
-     *
      * @see #setDisableDetectExecChannel(FileSystemOptions, boolean)
      * @since 2.7.0
      */
