@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,6 +23,7 @@ import org.apache.commons.vfs2.FileObject;
 import org.apache.commons.vfs2.FileSystemException;
 
 /**
+ * Abstracts implementations of {@link FileOperationProvider}.
  *
  * @since 0.1
  */
@@ -34,6 +35,13 @@ public abstract class AbstractFileOperationProvider implements FileOperationProv
      * and Collection of operations that are available for that scheme.
      */
     private final Collection<Class<? extends FileOperation>> operations = new ArrayList<>();
+
+    /**
+     * Constructs a new instance for subclasses.
+     */
+    public AbstractFileOperationProvider() {
+        // empty
+    }
 
     /**
      * Add new FileOperation to list of known operations.

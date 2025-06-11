@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -84,7 +84,7 @@ public final class FtpsClientFactory {
      * @param workingDirectory The directory to use.
      * @param fileSystemOptions The FileSystemOptions.
      * @return The FTPSClient.
-     * @throws FileSystemException if an error occurs.
+     * @throws FileSystemException if an error occurs while establishing a connection.
      */
     public static FTPSClient createConnection(final String hostname, final int port, final char[] username,
             final char[] password, final String workingDirectory, final FileSystemOptions fileSystemOptions)

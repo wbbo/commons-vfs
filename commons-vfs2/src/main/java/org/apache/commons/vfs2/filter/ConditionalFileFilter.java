@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -24,7 +24,7 @@ import org.apache.commons.vfs2.FileFilter;
  * Defines operations for conditional file filters.
  *
  * @author This code was originally ported from Apache Commons IO File Filter
- * @see "https://commons.apache.org/proper/commons-io/"
+ * @see <a href="https://commons.apache.org/proper/commons-io/">Apache Commons IO</a>
  * @since 2.4
  */
 public interface ConditionalFileFilter {
@@ -38,7 +38,7 @@ public interface ConditionalFileFilter {
     void addFileFilter(FileFilter fileFilter);
 
     /**
-     * Returns this conditional file filter's list of file filters.
+     * Gets this conditional file filter's list of file filters.
      *
      * @return the file filter list
      */

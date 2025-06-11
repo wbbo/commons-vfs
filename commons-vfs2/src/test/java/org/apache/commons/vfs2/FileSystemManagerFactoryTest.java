@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -56,6 +56,9 @@ public class FileSystemManagerFactoryTest {
         final File jarFile = getTestResource("test.jar");
         // File
         final FileObject file = manager.toFileObject(jarFile);
+        check(manager, file);
+        // Path
+        final FileObject path = manager.toFileObject(jarFile.toPath());
         check(manager, file);
         // URI
         final FileObject file2 = manager.resolveFile(jarFile.toURI());

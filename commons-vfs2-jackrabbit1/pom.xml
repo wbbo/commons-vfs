@@ -8,7 +8,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-        http://www.apache.org/licenses/LICENSE-2.0
+        https://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,19 +17,20 @@
    limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-vfs2-project</artifactId>
-    <version>2.10.1-SNAPSHOT</version>
-    <relativePath>../</relativePath>
+    <version>2.11.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <name>Apache Commons VFS Jackrabbit 1</name>
+  <name>Apache Commons VFS Jackrabbit 1.x</name>
   <artifactId>commons-vfs2-jackrabbit1</artifactId>
+  <packaging>jar</packaging>
   <description>Apache Commons VFS is a Virtual File System library - Jackrabbit-based WebDAV provider.</description>
 
   <dependencies>
@@ -125,7 +126,8 @@
         org.apache.commons.httpclient.*;resolution:=optional,
         *
     </commons.osgi.import>
-    <project.build.outputTimestamp>2024-03-03T15:45:26Z</project.build.outputTimestamp>
+    <!-- project.build.outputTimestamp is managed by Maven plugins, see https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+    <project.build.outputTimestamp>2025-02-14T13:36:40Z</project.build.outputTimestamp>
   </properties>
 
   <build>
@@ -210,7 +212,7 @@
   <profiles>
     <profile>
       <id>java14</id>
-        <!-- Jackrabbit 1 does not run on Java 14 and above. -->
+        <!-- Jackrabbit 1.x does not run on Java 14 and above. -->
         <activation>
           <jdk>[14,)</jdk>
         </activation>

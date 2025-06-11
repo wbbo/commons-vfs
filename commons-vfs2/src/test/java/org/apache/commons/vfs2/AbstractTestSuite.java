@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,7 +36,9 @@ import junit.framework.TestSuite;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.reflect.FieldUtils;
 import org.apache.commons.vfs2.impl.DefaultFileReplicator;
 import org.apache.commons.vfs2.impl.DefaultFileSystemManager;
 import org.apache.commons.vfs2.impl.PrivilegedFileReplicator;
@@ -171,15 +173,24 @@ public abstract class AbstractTestSuite extends TestSetup {
         final StringBuilder sb = new StringBuilder(256);
         sb.append("Threads still running (" + threadSnapshot.length + ") at " + Instant.now() + ", live threads:");
         sb.append(System.lineSeparator());
-
         Field threadTargetField = null;
         try {
-            threadTargetField = Thread.class.getDeclaredField("target");
-            threadTargetField.setAccessible(true);
+            threadTargetField = FieldUtils.getDeclaredField(Thread.class, "target", true);
+            if (threadTargetField == null) {
+                // Java 21 and up
+                threadTargetField = FieldUtils.getDeclaredField(Thread.class, "holder", true);
+                if (threadTargetField == null) {
+                    System.err.println("Test suite cannot show you a thread snapshot (Thread.holder)");
+                } else {
+                    threadTargetField = FieldUtils.getDeclaredField(threadTargetField.getClass(), "task", true);
+                    if (threadTargetField == null) {
+                        System.err.println("Test suite cannot show you a thread snapshot (Thread.holder.task)");
+                    }
+                }
+            }
         } catch (final Exception e) {
             System.err.println("Test suite cannot show you a thread snapshot: " + e);
         }
-
         int liveCount = 0;
         for (int index = 0; index < threadSnapshot.length; index++) {
             final Thread thread = threadSnapshot[index];
@@ -200,7 +211,6 @@ public abstract class AbstractTestSuite extends TestSetup {
                     sb.append("non_");
                 }
                 sb.append("daemon");
-
                 if (threadTargetField != null) {
                     sb.append(",\t");
                     try {
@@ -216,7 +226,6 @@ public abstract class AbstractTestSuite extends TestSetup {
                         sb.append(")");
                     }
                 }
-
                 sb.append(System.lineSeparator());
 //              Stream.of(thread.getStackTrace()).forEach(e -> {
 //                  sb.append('\t');

@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -43,7 +43,7 @@ public interface ProviderTestConfig {
     FilesCache getFilesCache();
 
     /**
-     * Whether or not the root of test file system is accessible.
+     * Tests whether or not the root of test file system is accessible.
      *
      * For example, with the default Jackrabbit (WebDAV) server, the root is not accessible, but deeper paths are OK.
      *

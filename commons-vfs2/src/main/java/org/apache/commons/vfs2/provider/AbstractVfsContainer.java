@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,6 +32,13 @@ public abstract class AbstractVfsContainer extends AbstractVfsComponent {
     private final ArrayList<Object> components = new ArrayList<>(); // @GuardedBy("self")
 
     /**
+     * Constructs a new instance for subclasses.
+     */
+    public AbstractVfsContainer() {
+        // empty
+    }
+
+    /**
      * Adds a subcomponent to this component.
      * <p>
      * If the sub-component implements {@link VfsComponent}, it is initialized. All sub-components are closed when this
@@ -51,11 +58,10 @@ public abstract class AbstractVfsContainer extends AbstractVfsComponent {
                     vfsComponent.setContext(getContext());
                     vfsComponent.init();
                 }
-
                 // Keep track of component, to close it later
                 components.add(component);
             }
-        } // synchronized
+        }
     }
 
     /**
@@ -68,7 +74,6 @@ public abstract class AbstractVfsContainer extends AbstractVfsComponent {
             toclose = components.toArray();
             components.clear();
         }
-
         // Close all components
         Stream.of(toclose).filter(VfsComponent.class::isInstance)
                           .forEach(component -> ((VfsComponent) component).close());

@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -281,14 +281,15 @@ public class VfsClassLoaderTests extends AbstractProviderTestCase {
         if (!exceptions.isEmpty()) {
             final StringBuilder exceptionMsg = new StringBuilder();
             final StringBuilderWriter writer = new StringBuilderWriter(exceptionMsg);
-            final PrintWriter pWriter = new PrintWriter(writer);
-            for (final Throwable t : exceptions) {
-                pWriter.write(t.getMessage());
-                pWriter.write('\n');
-                t.printStackTrace(pWriter);
-                pWriter.write('\n');
+            try (PrintWriter printWriter = new PrintWriter(writer)) {
+                for (final Throwable t : exceptions) {
+                    printWriter.write(t.getMessage());
+                    printWriter.write('\n');
+                    t.printStackTrace(printWriter);
+                    printWriter.write('\n');
+                }
+                printWriter.flush();
             }
-            pWriter.flush();
             assertTrue(exceptions.size() + " threads failed: " + exceptionMsg, exceptions.isEmpty());
         }
     }

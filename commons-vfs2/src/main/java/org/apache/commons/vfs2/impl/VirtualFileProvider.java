@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,6 +29,13 @@ import org.apache.commons.vfs2.provider.AbstractVfsContainer;
  * A virtual file system provider.
  */
 public class VirtualFileProvider extends AbstractVfsContainer {
+
+    /**
+     * Constructs a new instance.
+     */
+    public VirtualFileProvider() {
+        // empty
+    }
 
     /**
      * Close a VirtualFileSystem by removing it from the {@code #components} list of this provider.

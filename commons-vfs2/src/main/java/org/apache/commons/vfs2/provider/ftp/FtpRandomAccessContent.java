@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,6 +20,7 @@ import java.io.DataInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.vfs2.FileSystemException;
 import org.apache.commons.vfs2.provider.AbstractRandomAccessStreamContent;
 import org.apache.commons.vfs2.util.RandomAccessMode;
@@ -29,6 +30,9 @@ import org.apache.commons.vfs2.util.RandomAccessMode;
  */
 final class FtpRandomAccessContent extends AbstractRandomAccessStreamContent {
 
+    /**
+     * The random access file pointer.
+     */
     protected long filePointer;
 
     private final FtpFileObject fileObject;
@@ -116,14 +120,10 @@ final class FtpRandomAccessContent extends AbstractRandomAccessStreamContent {
             // no change
             return;
         }
-
         if (pos < 0) {
             throw new FileSystemException("vfs.provider/random-access-invalid-position.error", Long.valueOf(pos));
         }
-        if (dis != null) {
-            close();
-        }
-
+        IOUtils.close(dis);
         filePointer = pos;
     }
 }

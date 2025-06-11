@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -46,7 +46,7 @@ public abstract class AbstractFileProvider extends AbstractVfsContainer implemen
     private FileNameParser fileNameParser;
 
     /**
-     * Constructs a new instance.
+     * Constructs a new instance for subclasses.
      */
     public AbstractFileProvider() {
         fileNameParser = GenericFileNameParser.getInstance();
@@ -65,10 +65,8 @@ public abstract class AbstractFileProvider extends AbstractVfsContainer implemen
     protected void addFileSystem(final Comparable<?> key, final FileSystem fs) throws FileSystemException {
         // Add to the container and initialize
         addComponent(fs);
-
         final FileSystemKey treeKey = new FileSystemKey(key, fs.getFileSystemOptions());
         ((AbstractFileSystem) fs).setCacheKey(treeKey);
-
         synchronized (fileSystemMap) {
             fileSystemMap.put(treeKey, fs);
         }
@@ -180,7 +178,6 @@ public abstract class AbstractFileProvider extends AbstractVfsContainer implemen
         if (getFileNameParser() != null) {
             return getFileNameParser().parseUri(getContext(), base, uri);
         }
-
         throw new FileSystemException("vfs.provider/filename-parser-missing.error");
     }
 

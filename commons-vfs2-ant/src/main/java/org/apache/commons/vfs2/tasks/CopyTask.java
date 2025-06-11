@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -31,6 +31,13 @@ public class CopyTask extends AbstractSyncTask {
 
     private boolean overwrite;
     private boolean preserveLastModified = true;
+
+    /**
+     * Constructs a new instance.
+     */
+    public CopyTask() {
+        // empty
+    }
 
     /**
      * Handles an out-of-date file.
@@ -64,6 +71,8 @@ public class CopyTask extends AbstractSyncTask {
     }
 
     /**
+     * Tests whether overwrite is enabled.
+     *
      * @return the current value of overwrite
      */
     public boolean isOverwrite() {
@@ -71,6 +80,8 @@ public class CopyTask extends AbstractSyncTask {
     }
 
     /**
+     * Tests whether preserve last modified is enabled.
+     *
      * @return the current value of preserveLastModified
      */
     public boolean isPreserveLastModified() {
@@ -87,7 +98,7 @@ public class CopyTask extends AbstractSyncTask {
     }
 
     /**
-     * Enable/disable preserving last modified time of copied files.
+     * Sets preserving last modified time of copied files.
      *
      * @param preserveLastModified true if the last modified time should be preserved.
      */

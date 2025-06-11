@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -37,7 +37,7 @@ public final class UriParser {
     public static final char TRANS_SEPARATOR = '\\';
 
     /**
-     * The normalised separator to use.
+     * The normalized separator to use.
      */
     private static final char SEPARATOR_CHAR = FileName.SEPARATOR_CHAR;
 
@@ -217,6 +217,9 @@ public final class UriParser {
         }
         final StringBuilder buffer = new StringBuilder(decodedStr);
         encode(buffer, 0, buffer.length(), reserved);
+        if (buffer.length() == decodedStr.length()) { // No encoding happened
+            return decodedStr;
+        }
         return buffer.toString();
     }
 
@@ -430,10 +433,12 @@ public final class UriParser {
             buffer.setLength(0);
             buffer.append(uri);
         }
+        final int uriLength = uri.length();
         for (final String scheme : schemes) {
-            if (uri.startsWith(scheme + ":")) {
+            final int schemeLen = scheme.length();
+            if (uri.startsWith(scheme) && uriLength > schemeLen && uri.charAt(schemeLen) == ':') {
                 if (buffer != null) {
-                    buffer.delete(0, uri.indexOf(':') + 1);
+                    buffer.delete(0, schemeLen + 1);
                 }
                 return scheme;
             }
@@ -442,7 +447,7 @@ public final class UriParser {
     }
 
     /**
-     * Normalises the separators in a name.
+     * Normalizes the separators in a name.
      *
      * @param name The StringBuilder containing the name
      * @return true if the StringBuilder was modified.
@@ -474,14 +479,15 @@ public final class UriParser {
     }
 
     /**
-     * Normalises a path. Does the following:
+     * Normalizes a path. Does the following:
      * <ul>
      * <li>Removes empty path elements.
      * <li>Handles '.' and '..' elements.
      * <li>Removes trailing separator.
      * </ul>
-     *
+     * <p>
      * Its assumed that the separators are already fixed.
+     * </p>
      *
      * @param path The path to normalize.
      * @return The FileType.

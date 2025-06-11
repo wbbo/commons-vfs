@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -340,11 +340,9 @@ public class Http4FileProvider extends AbstractOriginatingFileProvider {
     protected FileSystem doCreateFileSystem(final FileName name, final FileSystemOptions fileSystemOptions)
             throws FileSystemException {
         final GenericFileName rootName = (GenericFileName) name;
-
         UserAuthenticationData authData = null;
         HttpClient httpClient;
         HttpClientContext httpClientContext;
-
         try {
             final Http4FileSystemConfigBuilder builder = Http4FileSystemConfigBuilder.getInstance();
             authData = UserAuthenticatorUtils.authenticate(fileSystemOptions, AUTHENTICATOR_TYPES);
@@ -353,7 +351,6 @@ public class Http4FileProvider extends AbstractOriginatingFileProvider {
         } finally {
             UserAuthenticatorUtils.cleanup(authData);
         }
-
         return new Http4FileSystem(rootName, fileSystemOptions, httpClient, httpClientContext);
     }
 

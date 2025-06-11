@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,6 +17,7 @@
 package org.apache.commons.vfs2.provider.ftp;
 
 import java.net.Proxy;
+import java.nio.charset.Charset;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -148,17 +149,34 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets the control encoding.
+     *
      * @param options The FileSystemOptions.
-     * @return The encoding.
+     * @return The control encoding.
      * @since 2.0
+     * @deprecated Use {@link #getControlEncodingCharset(FileSystemOptions)}.
      */
+    @Deprecated
     public String getControlEncoding(final FileSystemOptions options) {
         return getString(options, ENCODING);
     }
 
     /**
+     * Gets the control encoding.
+     *
+     * @param options The FileSystemOptions.
+     * @return The control encoding.
+     * @since 2.11.0
+     */
+    public Charset getControlEncodingCharset(final FileSystemOptions options) {
+        return getCharset(options, ENCODING);
+    }
+
+    /**
+     * Gets the controlKeepAliveReplyTimeout duration.
+     *
      * @param options The FileSystem options
-     * @return The controlKeepAliveReplyTimeout value.
+     * @return The controlKeepAliveReplyTimeout duration.
      * @since 2.8.0
      */
     public Duration getControlKeepAliveReplyTimeout(final FileSystemOptions options) {
@@ -166,8 +184,10 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets the controlKeepAliveTimeout duration.
+     *
      * @param options The FileSystem options
-     * @return The controlKeepAliveTimeout value.
+     * @return The controlKeepAliveTimeout duration.
      * @since 2.8.0
      */
     public Duration getControlKeepAliveTimeout(final FileSystemOptions options) {
@@ -175,6 +195,8 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets timeout for opening the data channel in milliseconds.
+     *
      * @param options The FileSystemOptions.
      * @return The timeout for opening the data channel in milliseconds.
      * @see #setDataTimeout
@@ -209,6 +231,8 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets the key to the EntryParser.
+     *
      * @param options The FileSystemOptions.
      * @see #setEntryParser
      * @return the key to the EntryParser.
@@ -218,9 +242,11 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets the FTPFileEntryParserFactory parameter.
+     *
      * @param options The FileSystemOptions.
      * @see #setEntryParserFactory
-     * @return An FTPFileEntryParserFactory.
+     * @return The FTPFileEntryParserFactory parameter.
      */
     public FTPFileEntryParserFactory getEntryParserFactory(final FileSystemOptions options) {
         return getParam(options, FTPFileEntryParserFactory.class.getName());
@@ -249,8 +275,10 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Tests whether passive mode is set.
+     *
      * @param options The FileSystemOptions.
-     * @return true if passive mode is set.
+     * @return whether passive mode is set.
      * @see #setPassiveMode
      */
     public Boolean getPassiveMode(final FileSystemOptions options) {
@@ -346,9 +374,10 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
+     * Gets the list of reply codes (apart from 200) that are considered as OK when prematurely closing a stream.
+     *
      * @param options The FileSystem options.
-     * @return The list of reply codes (apart from 200) that are considered as OK when prematurely
-     * closing a stream.
+     * @return The list of reply codes (apart from 200) that are considered as OK when prematurely closing a stream.
      * @since 2.4
      */
     public List<Integer> getTransferAbortedOkReplyCodes(final FileSystemOptions options) {
@@ -356,7 +385,7 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
     }
 
     /**
-     * Returns {@link Boolean#TRUE} if VFS should treat the user directory as the root directory. Defaults to
+     * Tests whether if VFS should treat the user directory as the root directory. Defaults to
      * {@code Boolean.TRUE} if the method {@link #setUserDirIsRoot(FileSystemOptions, boolean)} has not been
      * invoked.
      *
@@ -425,8 +454,21 @@ public class FtpFileSystemConfigBuilder extends FileSystemConfigBuilder {
      *
      * @param options The FileSystemOptions.
      * @param encoding the encoding to use
-     * @since 2.0
+     * @since 2.11.0
      */
+    public void setControlEncoding(final FileSystemOptions options, final Charset encoding) {
+        setParam(options, ENCODING, encoding);
+    }
+
+    /**
+     * See {@link org.apache.commons.net.ftp.FTP#setControlEncoding} for details and examples.
+     *
+     * @param options The FileSystemOptions.
+     * @param encoding the encoding to use
+     * @since 2.0
+     * @deprecated Use {@link #setControlEncoding(FileSystemOptions, Charset)}.
+     */
+    @Deprecated
     public void setControlEncoding(final FileSystemOptions options, final String encoding) {
         setParam(options, ENCODING, encoding);
     }

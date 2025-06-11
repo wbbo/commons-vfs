@@ -7,7 +7,7 @@
    (the "License"); you may not use this file except in compliance with
    the License.  You may obtain a copy of the License at
 
-        http://www.apache.org/licenses/LICENSE-2.0
+        https://www.apache.org/licenses/LICENSE-2.0
 
    Unless required by applicable law or agreed to in writing, software
    distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,8 +21,8 @@
   <parent>
     <groupId>org.apache.commons</groupId>
     <artifactId>commons-vfs2-project</artifactId>
-    <version>2.10.0-SNAPSHOT</version>
-    <relativePath>../</relativePath>
+    <version>2.11.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <artifactId>commons-vfs2-bom</artifactId>
   <packaging>pom</packaging>
@@ -33,38 +33,39 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-vfs2</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-vfs2-examples</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
-        <artifactId>commons-ant</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <artifactId>commons-vfs2-ant</artifactId>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
-        <artifactId>commons-hdfs</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <artifactId>commons-vfs2-hdfs</artifactId>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-vfs2-jackrabbit1</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-vfs2-jackrabbit2</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <version>2.11.0-SNAPSHOT</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
   <properties>
     <commons.parent.dir>${basedir}/..</commons.parent.dir>
 	<checkstyle.skip>true</checkstyle.skip>
-    <project.build.outputTimestamp>2024-03-03T15:45:26Z</project.build.outputTimestamp>
+    <!-- project.build.outputTimestamp is managed by Maven plugins, see https://maven.apache.org/guides/mini/guide-reproducible-builds.html -->
+    <project.build.outputTimestamp>2025-02-14T13:36:40Z</project.build.outputTimestamp>
   </properties>
 </project>

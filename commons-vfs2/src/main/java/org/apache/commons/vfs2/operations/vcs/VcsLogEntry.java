@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,6 +19,7 @@ package org.apache.commons.vfs2.operations.vcs;
 import java.util.Calendar;
 
 /**
+ * A VFS log entry.
  *
  * @since 0.1
  */
@@ -49,6 +50,7 @@ public class VcsLogEntry {
     private final String path;
 
     /**
+     * Constructs a new instance.
      *
      * @param author The author.
      * @param revision The revision.
@@ -66,6 +68,7 @@ public class VcsLogEntry {
     }
 
     /**
+     * Gets the author.
      *
      * @return The author.
      */
@@ -74,6 +77,7 @@ public class VcsLogEntry {
     }
 
     /**
+     * Gets the date.
      *
      * @return The date.
      */
@@ -82,6 +86,7 @@ public class VcsLogEntry {
     }
 
     /**
+     * Gets the message.
      *
      * @return The message.
      */
@@ -90,6 +95,7 @@ public class VcsLogEntry {
     }
 
     /**
+     * Gets the path.
      *
      * @return The path.
      */
@@ -98,6 +104,7 @@ public class VcsLogEntry {
     }
 
     /**
+     * Gets the revision.
      *
      * @return The revision.
      */

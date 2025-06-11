@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,24 +19,28 @@ package org.apache.commons.vfs2.operations.vcs;
 import org.apache.commons.vfs2.operations.FileOperation;
 
 /**
+ * The VCS log file operation.
  *
  * @since 0.1
  */
 public interface VcsLog extends FileOperation {
 
     /**
+     * Sets the end revision.
      *
      * @param endRev The end revision.
      */
     void setEndRevision(long endRev);
 
     /**
+     * Sets the LogEntry handler.
      *
      * @param handler The LogEntry handler.
      */
     void setLogEntryHandler(VcsLogEntryHandler handler);
 
     /**
+     * Sets the start revision.
      *
      * @param startRev The start revision.
      */

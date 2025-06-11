@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -58,6 +58,8 @@ public class DefaultLocalFileProvider extends AbstractOriginatingFileProvider im
 
     /**
      * Creates the file system.
+     *
+     * @return a new FileSystem, never null.
      */
     @Override
     protected FileSystem doCreateFileSystem(final FileName name, final FileSystemOptions fileSystemOptions)
@@ -77,7 +79,6 @@ public class DefaultLocalFileProvider extends AbstractOriginatingFileProvider im
     @Override
     public FileObject findLocalFile(final File file) throws FileSystemException {
         return findLocalFile(UriParser.encode(file.getAbsolutePath()));
-        // return findLocalFile(file.getAbsolutePath());
     }
 
     /**
@@ -90,11 +91,8 @@ public class DefaultLocalFileProvider extends AbstractOriginatingFileProvider im
     @Override
     public FileObject findLocalFile(final String name) throws FileSystemException {
         final String scheme = "file:";
-        final StringBuilder uri = new StringBuilder(name.length() + scheme.length());
-        uri.append(scheme);
-        uri.append(name);
-        final FileName fileName = parseUri(null, uri.toString());
-        return findFile(fileName, null);
+        final StringBuilder builder = new StringBuilder(name.length() + scheme.length());
+        return findFile(parseUri(null, builder.append(scheme).append(name).toString()), null);
     }
 
     @Override

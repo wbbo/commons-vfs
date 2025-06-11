@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -36,6 +36,7 @@ import org.apache.ftpserver.ftplet.UserManager;
 import org.apache.ftpserver.listener.ListenerFactory;
 import org.apache.ftpserver.ssl.SslConfiguration;
 import org.apache.ftpserver.ssl.SslConfigurationFactory;
+import org.apache.ftpserver.usermanager.Md5PasswordEncryptor;
 import org.apache.ftpserver.usermanager.PropertiesUserManagerFactory;
 import org.apache.ftpserver.usermanager.impl.BaseUser;
 import org.junit.jupiter.api.Assertions;
@@ -119,6 +120,8 @@ abstract class AbstractFtpsProviderTestCase extends AbstractProviderTestConfig {
         socketPort = 0;
         final FtpServerFactory serverFactory = new FtpServerFactory();
         final PropertiesUserManagerFactory propertiesUserManagerFactory = new PropertiesUserManagerFactory();
+        // TODO Update to SHA512
+        propertiesUserManagerFactory.setPasswordEncryptor(new Md5PasswordEncryptor());
         final URL userPropsResource = ClassLoader.getSystemClassLoader().getResource(USER_PROPS_RES);
         Assertions.assertNotNull(userPropsResource, USER_PROPS_RES);
         propertiesUserManagerFactory.setUrl(userPropsResource);
@@ -163,6 +166,7 @@ abstract class AbstractFtpsProviderTestCase extends AbstractProviderTestConfig {
         }
         socketPort = ((org.apache.ftpserver.impl.DefaultFtpServer) embeddedFtpServer).getListener(LISTENER_NAME).getPort();
         // System.out.println("Using port " + SocketPort);
+        // System.out.printf("jdk.tls.disabledAlgorithms = %s%n", System.getProperty("jdk.tls.disabledAlgorithms"));
         connectionUri = "ftps://test:test@localhost:" + socketPort;
     }
 

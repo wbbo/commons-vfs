@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -25,6 +25,7 @@ import org.apache.commons.vfs2.UserAuthenticator;
  * Default options usable for all file systems.
  */
 public class DefaultFileSystemConfigBuilder extends FileSystemConfigBuilder {
+
     /**
      * Dummy class that implements FileSystem.
      */
@@ -43,15 +44,24 @@ public class DefaultFileSystemConfigBuilder extends FileSystemConfigBuilder {
         return BUILDER;
     }
 
+    /**
+     * Constructs a new instance.
+     */
+    public DefaultFileSystemConfigBuilder() {
+        // empty
+    }
+
     @Override
     protected Class<? extends FileSystem> getConfigClass() {
         return DefaultFileSystem.class;
     }
 
     /**
+     * Gets the UserAuthenticator parameter.
+     *
      * @see #setUserAuthenticator
      * @param opts The FileSystemOptions.
-     * @return The UserAuthenticator.
+     * @return The UserAuthenticator parameter..
      */
     public UserAuthenticator getUserAuthenticator(final FileSystemOptions opts) {
         return getParam(opts, "userAuthenticator");

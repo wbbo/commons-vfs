@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.vfs2.AllFileSelector;
 import org.apache.commons.vfs2.FileContent;
 import org.apache.commons.vfs2.FileObject;
@@ -121,15 +122,11 @@ public class CustomRamProviderTest {
     }
 
     @AfterEach
-    public void tearDown() {
-        for (final Closeable closeable : closeables) {
-            try {
-                closeable.close();
-            } catch (final Exception e) {
-                // ignore
-            }
+    public void tearDown() throws IOException {
+        IOUtils.closeQuietly(closeables);
+        if (manager != null) {
+            manager.close();
         }
-        manager.close();
     }
 
     @Test

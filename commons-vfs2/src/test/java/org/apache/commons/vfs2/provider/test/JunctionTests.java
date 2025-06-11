@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -140,7 +140,11 @@ public class JunctionTests extends AbstractProviderTestCase {
 
         final FileObject real2 = baseDir.resolveFile("weakref.txt");
         real2.createFile();
-        assertEquals("Weak Listener was abandoned", "Listener false true false", listener2.toString());
+        try {
+            assertEquals("Weak Listener was abandoned", "Listener false true false", listener2.toString());
+        } finally {
+            assertTrue("Don't contaminate the fs for the next time the test runs", file2.delete());
+        }
     }
 
     /**

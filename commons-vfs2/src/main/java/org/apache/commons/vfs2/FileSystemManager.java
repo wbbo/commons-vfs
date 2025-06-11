@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,6 +21,7 @@ import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLStreamHandlerFactory;
+import java.nio.file.Path;
 import java.util.Collection;
 
 import org.apache.commons.logging.Log;
@@ -66,6 +67,8 @@ public interface FileSystemManager extends AutoCloseable {
     void addOperationProvider(String scheme, FileOperationProvider operationProvider) throws FileSystemException;
 
     /**
+     * Adds an operation provider.
+     *
      * @see FileSystemManager#addOperationProvider(String, org.apache.commons.vfs2.operations.FileOperationProvider)
      * @param schemes The schemes that will be associated with the provider.
      * @param operationProvider The FileOperationProvider to add.
@@ -348,5 +351,17 @@ public interface FileSystemManager extends AutoCloseable {
      * @throws FileSystemException On error converting the file.
      */
     FileObject toFileObject(File file) throws FileSystemException;
+
+    /**
+     * Converts a local path into a {@link FileObject}.
+     *
+     * @param path The path to convert.
+     * @return The {@link FileObject} that represents the local file. Never returns null.
+     * @throws FileSystemException On error converting the file.
+     * @since 2.10.0
+     */
+    default FileObject toFileObject(final Path path) throws FileSystemException {
+        return toFileObject(path.toFile());
+    }
 
 }

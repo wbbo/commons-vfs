@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -124,7 +124,7 @@ final class RamFileData implements Serializable {
     }
 
     /**
-     * @return Returns the children.
+     * @return the children.
      */
     Collection<RamFileData> getChildren() {
         if (name == null) {
@@ -134,28 +134,28 @@ final class RamFileData implements Serializable {
     }
 
     /**
-     * @return Returns the buffer.
+     * @return the buffer.
      */
     byte[] getContent() {
         return content;
     }
 
     /**
-     * @return Returns the lastModified.
+     * @return the lastModified.
      */
     long getLastModified() {
         return lastModifiedMillis;
     }
 
     /**
-     * @return Returns the name.
+     * @return the name.
      */
     FileName getName() {
         return name;
     }
 
     /**
-     * @return Returns the type.
+     * @return the type.
      */
     FileType getType() {
         return type;
@@ -234,7 +234,7 @@ final class RamFileData implements Serializable {
     }
 
     /**
-     * @return Returns the size of the buffer
+     * @return the size of the buffer
      */
     int size() {
         return content.length;

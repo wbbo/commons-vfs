@@ -6,7 +6,7 @@
  * (the "License"); you may not use this file except in compliance with
  * the License.  You may obtain a copy of the License at
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
+ *      https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -77,11 +77,13 @@ public class Http4FileSystem extends AbstractFileSystem {
         this.httpClientContext = httpClientContext;
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void addCapabilities(final Collection<Capability> caps) {
         caps.addAll(Http4FileProvider.CAPABILITIES);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected FileObject createFile(final AbstractFileName name) throws Exception {
         return new Http4FileObject<>(name, this);
@@ -90,9 +92,7 @@ public class Http4FileSystem extends AbstractFileSystem {
     @Override
     protected void doCloseCommunicationLink() {
         if (httpClient instanceof Closeable) {
-            // TODO "Error closing HttpClient" Commons IO
-            // Uncheck.run(() -> ((Closeable) httpClient).close(), () -> "Error closing HttpClient");
-            Uncheck.run(() -> ((Closeable) httpClient).close());
+            Uncheck.run(() -> ((Closeable) httpClient).close(), () -> "Error closing HttpClient");
         }
     }
 
